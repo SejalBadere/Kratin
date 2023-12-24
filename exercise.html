@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Exercise Buddy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" >
+        <p id="ename">Exercise Name</p>
+        <img src="images.jpg" id="eimage">
+        <button onclick="NextExercise()" id="nextButton">Next Exercise</button>
+        <button onclick="finishExercise()" id="finishButton" style="display: none;">Finish</button>
+        <p id="mot"></p>
+        <p id="finishMessage" style="display: none;">Wonderfully Done for Today!!!! Come Back Tomorrow</p>
+    </div>
+    
+    
+    <script>
+        const exer = [
+            { name: 'Chest Stretching', image: 'chest.jpg', motivation: 'Great start! Keep it up!' },
+            { name: 'Hip Marching', image: 'hipmarch.jpg', motivation: "You're doing fantastic!" },
+            { name: 'Ankle Stretch', image: 'ankle.jpg', motivation: "Keep going!" },
+            { name: 'Arm Raises', image: 'arm.jpg', motivation: "You're doing Wonderful!!" },
+            { name: 'Neck Rotation', image: 'neck.jpg', motivation: "Push yourself more!" },
+            { name: 'Neck Stretching', image: 'nstretch.jpg', motivation: "Be proud of Yourself!" },
+
+    ];
+        let currindex = 0;
+        
+        function NextExercise() {
+            if (currindex< exer.length - 1)
+            {
+                currindex++;
+            // currindex = (currindex + 1) % exer.length;
+            document.getElementById('ename').innerText = exer[currindex].name;
+            document.getElementById('eimage').src = exer[currindex].image;
+            document.getElementById('mot').innerText = exer[currindex].motivation;
+            }
+            else
+            {
+            document.getElementById('nextButton').style.display = 'none';
+            document.getElementById('finishButton').style.display = 'block';
+            document.getElementById('ename').innerText = exer[currindex].name;
+            document.getElementById('eimage').src = exer[currindex].image;
+            document.getElementById('mot').innerText = exer[currindex].motivation;
+            }
+        }
+        window.onload = function() {
+            document.getElementById('ename').innerText = exer[currindex].name;
+            document.getElementById('eimage').src = exer[currindex].image;
+            document.getElementById('mot').innerText = exer[currindex].motivation;
+        }
+        function finishExercise() {
+        document.getElementById('finishMessage').style.display = 'block';
+    }
+    </script>
+</body>    
